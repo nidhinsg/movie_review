@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-md-2">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="upvote review-vote" data-review-id="<%= review.id %>"></div>
+				<div class="downvote review-vote" data-review-id="<%= review.id %>"></div>
+			</div>
+			<div class="col-md-6">
+				<div class="upvotes" data-vote="46">46</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<%= review.review_comment %>
+	</div>
+	<div class="col-md-2">
+		<%= review.created_at %>
+	</div>
+</div>
+<hr>

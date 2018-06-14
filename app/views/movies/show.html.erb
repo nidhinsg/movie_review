@@ -24,18 +24,7 @@
 		<h3 class="text-center text-success">Review Comments</h3>
 		<hr>
 		<% @movie.user_reviews.each do |review| %>
-			<div class="row">
-				<div class="col-md-2">
-					Up Vote / Down Vote
-				</div>
-				<div class="col-md-8">
-					<%= review.review_comment %>
-				</div>
-				<div class="col-md-2">
-					<%= review.created_at %>
-				</div>
-			</div>
-			<hr>
+			<%= render 'review_comments', review: review %>
 		<% end %>	
 	</div>
 </div>
@@ -50,3 +39,11 @@
 		</button>
 	</div>	
 </div>
+
+<script type="text/javascript">
+	var append_new_comment = function(append_data) {
+		console.log(append_data);
+		$("#movie-review-box").append(append_data);
+	}
+
+</script>

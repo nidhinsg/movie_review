@@ -33,3 +33,17 @@
 	</div>
 </div>
 
+<button id="tester">
+	Tester
+</button>
+
+<div id="testerjaba">
+	aaaa ff
+</div>
+ <script type="text/javascript">
+ 	$("#tester").click(function() {
+ 		console.log("aaa");
+ 		var a = "aaaa";
+ 		$("#testerjaba").html("<%= render 'tester', t: " a " %>");
+ 	});
+ </script>

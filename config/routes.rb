@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :movies, only: [:index, :show]
       resources :user_reviews, only: [:create]
+      resources :review_votes, only: [:create]
     end
   end
 end
