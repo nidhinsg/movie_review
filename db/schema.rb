@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_040608) do
+ActiveRecord::Schema.define(version: 2018_06_18_061039) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2018_06_14_040608) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "movie_ratings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "movie_id"
+    t.integer "ratings"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_movie_ratings_on_movie_id"
+    t.index ["user_id"], name: "index_movie_ratings_on_user_id"
+  end
+
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -56,7 +66,7 @@ ActiveRecord::Schema.define(version: 2018_06_14_040608) do
   end
 
   create_table "user_review_votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.boolean "vote_flag"
+    t.integer "vote"
     t.bigint "user_review_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false

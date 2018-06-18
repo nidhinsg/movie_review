@@ -1,12 +1,13 @@
+
 <div class="row">
 	<div class="col-md-2">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="upvote review-vote" data-review-id="<%= review.id %>"></div>
-				<div class="downvote review-vote" data-review-id="<%= review.id %>"></div>
+				<div class="upvote review-vote" data-review-id="<%= review.id %>" data-user-id="<%= current_user.id %>"></div>
+				<div class="downvote review-vote" data-review-id="<%= review.id %>" data-user-id="<%= current_user.id %>"></div>
 			</div>
 			<div class="col-md-6">
-				<div class="upvotes" data-vote="46">46</div>
+				<div class="upvotes" id="votes_id_<%=review.id%>"><%= review.vote_count %></div>
 			</div>
 		</div>
 	</div>

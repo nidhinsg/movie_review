@@ -16,9 +16,11 @@
 		<span> <b> Description: </b><%= @movie.description %> </span> <br>
 	</div>
 </div>
+
 <div class="row light-border">
 	<div class="col-md-12">
-		Your Rating: 4/5
+		<div class="movie-star-rating" data-movie-id="<%= @movie.id %>" data-user-id="<%= current_user.id %>" data-avg-rating="<%= @movie.get_avg_rating %>">
+		</div>
 	</div>
 	<div class="col-md-12" id="movie-review-box">
 		<h3 class="text-center text-success">Review Comments</h3>
@@ -39,11 +41,3 @@
 		</button>
 	</div>	
 </div>
-
-<script type="text/javascript">
-	var append_new_comment = function(append_data) {
-		console.log(append_data);
-		$("#movie-review-box").append(append_data);
-	}
-
-</script>

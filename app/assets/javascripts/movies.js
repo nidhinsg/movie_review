@@ -1,4 +1,27 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
+	var average_movie_rating = $(".movie-star-rating").attr("data-avg-rating");
+
+	$(".movie-star-rating").addRating({
+		selectedRatings: average_movie_rating
+	});
+
+	$(".movie-star-rating").click(function() {
+		var rating = $("#rating").val();
+		var user_id = $(this).attr("data-user-id");
+		var movie_id = $(this).attr("data-movie-id");
+		$.ajax({
+			method: "POST",
+			url: "/api/v1/movies/" + movie_id + "/movie_ratings",
+			data: {
+				rating: rating,
+				user_id: user_id
+			},
+			success: function(response) {
+				console.log(response);
+			}
+		});
+	});
+
 	$("#submit-user-review").click(function() {
 		console.log("jaaaaaaaa");
 		var user_id = $(this).attr("data-user-id");
@@ -12,8 +35,7 @@ $(document).ready(function() {
 		  		comments: user_comment},
 
 		  success: function(response) {
-		  	var append_data = "escape_javascript(<%= render 'review_comments', review: " + response + " %>)"
-		  	append_new_comment(append_data);
+		  	location.reload();
 		  	// $("#movie-review-box").append(
 		  	// 	"<div class ='row'>" +
 		  	// 		"<div class='col-md-2'>" +
@@ -36,15 +58,24 @@ $(document).ready(function() {
 
 
 	$(".review-vote").click(function() {
-		 if ($(this).hasClass("upvote")) {  
-		 	console.log('upvote');
-		 } else {
-		 	console.log('downvote');
-		 }
+		var vote_flag = 1;
+		if ($(this).hasClass("downvote")) {
+			vote_flag = -1;
+			console.log('downvote');
+		}
+		var user_id = $(this).attr("data-user-id");
+		var user_review_id = $(this).attr("data-review-id");
+		$.ajax({
+			method: "POST",
+			url: "/api/v1/review_votes.json",
+			data: { user_id: user_id, 
+		  		user_review_id: user_review_id,
+		  		vote_flag: vote_flag
+		  	},
+
+			success: function(response) {
+				$("#votes_id_" + user_review_id).html(response["review_vote_count"]);
+			}
+		});
 	});
-
-
-
-
-
 });

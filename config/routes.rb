@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :movies, only: [:index, :show]
+      resources :movies, only: [:index, :show] do
+        resources :movie_ratings, only: :create
+      end  
       resources :user_reviews, only: [:create]
       resources :review_votes, only: [:create]
     end
