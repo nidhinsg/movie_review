@@ -1,20 +1,25 @@
 <div>
 	<div class="row">
-		<% @movies.each do |t| %>
+		<% @movies.each do |movie| %>
 			<div class="col-md-4">
 				<div class="movie-tile">
 					<h2 class="text-center text-primary">
-						<%= t.name %>	
+						<%= movie.name %>	
 					</h2>
 					<div class="row">
 						<div class="col-md-5">
-							Average Rating: 4.5 / 5
+							<% ratings_sum = movie.movie_ratings.pluck(:ratings).sum %>
+							<% ratings_size = movie.movie_ratings.size %>
+							<% ratings_avg = ratings_sum.to_f / ratings_size %>
+							
+
+							Average Rating: <%= ratings_avg %>/5 (Total Reviews: <%= ratings_size %>)
 						</div>
 						<div class="col-md-5 col-md-offset-2">
-							Total Review Comments: 16
+							Total Review Comments: <%= movie.user_reviews.size %>
 						</div>
 						<div class="col-md-12 text-center">
-							<a href="/movies/<%= t.id %>" class="btn btn-primary">
+							<a href="/movies/<%= movie.id %>" class="btn btn-primary">
 								Reviews & Ratings
 							</a>
 						</div>

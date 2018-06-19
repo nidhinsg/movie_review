@@ -4,6 +4,6 @@ class MoviesController < ApplicationController
 	end
 
 	def show
-		@movie = Movie.find(params[:id])
+		@movie = Movie.includes(user_reviews: :user_review_votes).where(id: params[:id]).first
 	end
 end

@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-2">
           <% if user_signed_in? %>
-            User: <%= current_user.fullname %> | 
+            User: <%= current_user.email %> | 
             <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
           <% else %>
             Guest

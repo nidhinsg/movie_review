@@ -17,7 +17,10 @@ document.addEventListener("turbolinks:load", function() {
 				user_id: user_id
 			},
 			success: function(response) {
-				console.log(response);
+				$(".movie-star-rating").html("");
+				$(".movie-star-rating").addRating({
+					selectedRatings: response["average_rating"]
+				});
 			}
 		});
 	});
