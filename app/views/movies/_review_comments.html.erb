@@ -1,4 +1,3 @@
-
 <div class="row">
 	<div class="col-md-2">
 		<div class="row">
@@ -15,7 +14,8 @@
 		<%= review.review_comment %>
 	</div>
 	<div class="col-md-2">
-		<%= review.created_at %>
+		Commented by <%= review.user.email %> on 
+		<%= review.created_at.strftime("%D") %>
 	</div>
 </div>
 <hr>

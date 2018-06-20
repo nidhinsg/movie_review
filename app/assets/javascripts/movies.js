@@ -26,7 +26,6 @@ document.addEventListener("turbolinks:load", function() {
 	});
 
 	$("#submit-user-review").click(function() {
-		console.log("jaaaaaaaa");
 		var user_id = $(this).attr("data-user-id");
 		var movie_id = $(this).attr("data-movie-id");
 		var user_comment = $("#user-comment").val();
@@ -64,10 +63,10 @@ document.addEventListener("turbolinks:load", function() {
 		var vote_flag = 1;
 		if ($(this).hasClass("downvote")) {
 			vote_flag = -1;
-			console.log('downvote');
 		}
 		var user_id = $(this).attr("data-user-id");
 		var user_review_id = $(this).attr("data-review-id");
+		console.log(vote_flag);
 		$.ajax({
 			method: "POST",
 			url: "/api/v1/review_votes.json",
@@ -78,6 +77,16 @@ document.addEventListener("turbolinks:load", function() {
 
 			success: function(response) {
 				$("#votes_id_" + user_review_id).html(response["review_vote_count"]);
+			}
+		});
+	});
+
+	$("#highest-rating").click(function() {
+		$.ajax({
+			method: "GET",
+			url: "/api/v1/movies/highest_avg_rated",
+			success: function(response) {
+				console.log(response);
 			}
 		});
 	});
