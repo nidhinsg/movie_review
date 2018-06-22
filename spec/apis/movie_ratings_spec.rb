@@ -13,9 +13,10 @@ describe 'Request: /api/v1/movies/:movie_id/movie_ratings.json', type: :request 
     user_review
 
     params = { user_id: user1.id, rating: '4', movie_id: movie1.id }
-    headers = { 'auth_token' => user1.auth_token }
+    headers = { 'HTTP_AUTH_TOKEN' => user1.auth_token }
 
-    post "/api/v1/movies/#{movie1.id}/movie_ratings.json", params: params, headers: headers
+    post "/api/v1/movies/#{movie1.id}/movie_ratings.json", params: params,
+                                                           headers: headers
     resp = JSON.parse(response.body)
 
     expect(response.content_type).to eq("application/json")

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'devise'
 
 describe 'Request: /api/v1/movies.json', type: :request do
 
@@ -11,9 +10,12 @@ describe 'Request: /api/v1/movies.json', type: :request do
   	movie1
   	movie2
 
-    request.env["auth_token"] = "blah"
-    
-    get '/api/v1/movies.json'
+    headers = { 'HTTP_AUTH_TOKEN' => user.auth_token }
+
+    get '/api/v1/movies.json', params: {},
+                               headers: headers
+
+
     resp = JSON.parse(response.body)
 
     expect(response.content_type).to eq("application/json")
@@ -46,7 +48,7 @@ describe 'Request: /api/v1/movies/highest_avg_rated.json', type: :request do
   	movie_ratings3
   	movie_ratings4
 
-    headers = { 'auth_token' => user1.auth_token }
+    headers = { 'HTTP_AUTH_TOKEN' => user1.auth_token }
   	
   	get '/api/v1/movies/highest_avg_rated.json', params: {},
                                                 headers: headers

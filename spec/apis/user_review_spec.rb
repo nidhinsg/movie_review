@@ -10,7 +10,7 @@ describe 'Request: /api/v1/user_reviews.json', type: :request do
   	user1
 
     params = { user_id: user1.id, comments: 'Test Comment by User 1', movie_id: movie1.id }
-    headers = { 'auth_token' => user1.auth_token }
+    headers = { 'HTTP_AUTH_TOKEN' => user1.auth_token }
 
     post "/api/v1/user_reviews.json", params: params, headers: headers
     resp = JSON.parse(response.body)
