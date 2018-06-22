@@ -9,9 +9,11 @@ document.addEventListener("turbolinks:load", function() {
 		var rating = $("#rating").val();
 		var user_id = $(this).attr("data-user-id");
 		var movie_id = $(this).attr("data-movie-id");
+		var user_token = $(this).attr("data-auth-token");
 		$.ajax({
 			method: "POST",
 			url: "/api/v1/movies/" + movie_id + "/movie_ratings",
+			headers: {"auth_token": user_token},
 			data: {
 				rating: rating,
 				user_id: user_id
@@ -27,6 +29,7 @@ document.addEventListener("turbolinks:load", function() {
 
 	$("#submit-user-review").click(function() {
 		var user_id = $(this).attr("data-user-id");
+		var user_token = $(this).attr("data-auth-token");
 		var movie_id = $(this).attr("data-movie-id");
 		var user_comment = $("#user-comment").val();
 		$.ajax({
@@ -35,7 +38,7 @@ document.addEventListener("turbolinks:load", function() {
 		  data: { user_id: user_id, 
 		  		movie_id: movie_id,
 		  		comments: user_comment},
-
+		  headers: {"auth_token": user_token},	
 		  success: function(response) {
 		  	location.reload();
 		  	// $("#movie-review-box").append(
@@ -66,10 +69,12 @@ document.addEventListener("turbolinks:load", function() {
 		}
 		var user_id = $(this).attr("data-user-id");
 		var user_review_id = $(this).attr("data-review-id");
+		var user_token = $(this).attr("data-auth-token");
 		console.log(vote_flag);
 		$.ajax({
 			method: "POST",
 			url: "/api/v1/review_votes.json",
+			headers: {"auth_token": user_token},
 			data: { user_id: user_id, 
 		  		user_review_id: user_review_id,
 		  		vote_flag: vote_flag
@@ -82,9 +87,11 @@ document.addEventListener("turbolinks:load", function() {
 	});
 
 	$("#highest-rating").click(function() {
+		var user_token = $(this).attr("data-auth-token");
 		$.ajax({
 			method: "GET",
 			url: "/api/v1/movies/highest_avg_rated",
+			headers: {"auth_token": user_token},
 			success: function(response) {
 				console.log(response);
 			}

@@ -19,7 +19,7 @@
 
 <div class="row light-border">
 	<div class="col-md-12">
-		<div class="movie-star-rating" data-movie-id="<%= @movie.id %>" data-user-id="<%= current_user.id %>" data-avg-rating="<%= @movie.get_avg_rating %>">
+		<div class="movie-star-rating" data-movie-id="<%= @movie.id %>" data-user-id="<%= current_user.id %>" data-avg-rating="<%= @movie.get_avg_rating %>" data-auth-token="<%= current_user.auth_token %>">
 		</div>
 	</div>
 	<div class="col-md-12" id="movie-review-box">
@@ -36,7 +36,7 @@
 		<input type="text" class="form-control" id="user-comment" placeholder="Your Comments...">
 	</div>
 	<div class="col-md-2">
-		<button class="btn btn-success" data-movie-id="<%= @movie.id %>" data-user-id="<%= current_user.id %>" id="submit-user-review">
+		<button class="btn btn-success" data-movie-id="<%= @movie.id %>" data-user-id="<%= current_user.id %>" data-auth-token="<%= current_user.auth_token %>" id="submit-user-review">
 			Post Comment
 		</button>
 	</div>	

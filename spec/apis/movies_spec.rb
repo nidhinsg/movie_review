@@ -5,10 +5,14 @@ describe 'Request: /api/v1/movies.json', type: :request do
 
   let(:movie1) {Movie.create!(name: "Test Movie 1")}
   let(:movie2) {Movie.create!(name: "Test Movie 2")}
+  let(:user) {User.create!(email: "test@test.com", password: "123456")}
 
   it 'Movie Index Api Should Return the expected movies' do
   	movie1
   	movie2
+
+    request.env["auth_token"] = "blah"
+    
     get '/api/v1/movies.json'
     resp = JSON.parse(response.body)
 
@@ -41,8 +45,11 @@ describe 'Request: /api/v1/movies/highest_avg_rated.json', type: :request do
   	movie_ratings2
   	movie_ratings3
   	movie_ratings4
+
+    headers = { 'auth_token' => user1.auth_token }
   	
-  	get '/api/v1/movies/highest_avg_rated.json'
+  	get '/api/v1/movies/highest_avg_rated.json', params: {},
+                                                headers: headers
   	resp = JSON.parse(response.body)
   	expect(response.content_type).to eq("application/json")
     expect(response).to have_http_status(200)
