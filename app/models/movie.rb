@@ -8,6 +8,10 @@ class Movie < ApplicationRecord
 		movie_ratings.average(:ratings).to_i
 	end
 
+	def get_current_user_rating user_id
+		movie_ratings.where(user_id: user_id).first.ratings
+	end
+
 	def self.highest_average_rated_movie
 	    select('movies.*, avg(movie_ratings.ratings) as averages')
 	    	.joins('LEFT JOIN movie_ratings on movie_ratings.movie_id = movies.id')

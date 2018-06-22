@@ -1,8 +1,8 @@
 document.addEventListener("turbolinks:load", function() {
-	var average_movie_rating = $(".movie-star-rating").attr("data-avg-rating");
+	var user_movie_rating = $(".movie-star-rating").attr("data-user-rating");
 
 	$(".movie-star-rating").addRating({
-		selectedRatings: average_movie_rating
+		selectedRatings: user_movie_rating
 	});
 
 	$(".movie-star-rating").click(function() {
@@ -19,10 +19,7 @@ document.addEventListener("turbolinks:load", function() {
 				user_id: user_id
 			},
 			success: function(response) {
-				$(".movie-star-rating").html("");
-				$(".movie-star-rating").addRating({
-					selectedRatings: response["average_rating"]
-				});
+				$("#avg_rating").html("Average Rating: " + response['average_rating'] + "/5");
 			}
 		});
 	});

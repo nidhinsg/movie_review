@@ -18,9 +18,12 @@
 </div>
 
 <div class="row light-border">
-	<div class="col-md-12">
-		<div class="movie-star-rating" data-movie-id="<%= @movie.id %>" data-user-id="<%= current_user.id %>" data-avg-rating="<%= @movie.get_avg_rating %>" data-auth-token="<%= current_user.auth_token %>">
+	<div class="col-md-8">
+		<div class="movie-star-rating" data-movie-id="<%= @movie.id %>" data-user-id="<%= current_user.id %>" data-user-rating="<%= @movie.get_current_user_rating current_user.id %>" data-auth-token="<%= current_user.auth_token %>">
 		</div>
+	</div>
+	<div class="col-md-4" id="avg_rating">
+		Average Rating: <%= @movie.get_avg_rating %>/5 
 	</div>
 	<div class="col-md-12" id="movie-review-box">
 		<h3 class="text-center text-success">Review Comments</h3>
