@@ -1,4 +1,4 @@
-class Api::V1::MovieRatingsController < ApplicationController
+class Api::V1::MovieRatingsController < Api::BaseApiController
 
 	def create
 		@movie_rating = MovieRating.find_or_initialize_by(user_id: params[:user_id],

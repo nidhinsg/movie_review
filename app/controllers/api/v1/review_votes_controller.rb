@@ -1,4 +1,4 @@
-class Api::V1::ReviewVotesController < ApplicationController
+class Api::V1::ReviewVotesController < Api::BaseApiController
 
 	def create				 
 		review_vote = UserReviewVote.find_or_initialize_by(user_id: params[:user_id],

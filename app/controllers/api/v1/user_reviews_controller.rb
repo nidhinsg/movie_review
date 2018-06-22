@@ -1,4 +1,4 @@
-class Api::V1::UserReviewsController < ApplicationController
+class Api::V1::UserReviewsController < Api::BaseApiController
 
 	def create
 		@user_review = UserReview.create(user_id: params[:user_id],
